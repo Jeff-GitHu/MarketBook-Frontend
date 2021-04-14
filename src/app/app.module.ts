@@ -18,14 +18,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BookNewComponent } from './books/book-new.component';
 
 //providers
 import { LibrosService } from './services/libros.service';
-import { SecurityService } from "./security/security.service";
+import { SecurityService } from './security/security.service';
 import { BooksComponent } from './books/books.component';
-import { BooksService } from "./books/books.service";
-
-
+import { BooksService } from './books/books.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +38,7 @@ import { BooksService } from "./books/books.service";
     BarComponent,
     MenuListComponent,
     BooksComponent,
+    BookNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,5 +50,6 @@ import { BooksService } from "./books/books.service";
   ],
   providers: [LibrosService, SecurityService, BooksService],
   bootstrap: [AppComponent],
+  entryComponents: [BookNewComponent],
 })
 export class AppModule {}
