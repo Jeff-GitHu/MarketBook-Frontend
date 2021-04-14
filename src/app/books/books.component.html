@@ -1,0 +1,23 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef>Titulo</mat-header-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.title }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.description }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <mat-header-cell *matHeaderCellDef>Autor</mat-header-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.author }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.price }}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+</mat-table>

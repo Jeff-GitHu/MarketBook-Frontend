@@ -1,0 +1,24 @@
+<mat-nav-list>
+  <a *ngIf="stateUser" routerLink="/" mat-list-item (click)="onCloseMenu()">
+    <mat-icon>home</mat-icon>
+    <span class="navigation-list-label">Home</span>
+  </a>
+  <a *ngIf="!stateUser" mat-list-item routerLink="/Register" (click)="onCloseMenu()">
+    <mat-icon>
+      how_to_reg
+    </mat-icon>
+    <span class="navigation-list-label">Register</span>
+  </a>
+  <a *ngIf="!stateUser" mat-list-item routerLink="/Login" (click)="onCloseMenu()">
+    <mat-icon>
+      login
+    </mat-icon>
+    <span class="navigation-list-label">Login</span>
+  </a>
+  <mat-list-item>
+    <button mat-icon-button (click)="logOut()" *ngIf="stateUser">
+      <mat-icon>eject</mat-icon>
+      <span class="navigation-list-label">Salir</span>
+    </button>
+  </mat-list-item>
+</mat-nav-list>

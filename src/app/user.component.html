@@ -1,0 +1,6 @@
+<input *ngIf="visible" type="text" [(ngModel)]="userName" >
+<p *ngIf="!visible">Value: {{userName}}</p>
+<button *ngIf="visible" (click)="onAddUser()">Agregar</button>
+<div *ngFor="let user of users">
+  {{user}}
+</div>
