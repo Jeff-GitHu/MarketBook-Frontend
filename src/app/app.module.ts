@@ -19,12 +19,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BookNewComponent } from './books/book-new.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //providers
 import { LibrosService } from './services/libros.service';
 import { SecurityService } from './security/security.service';
 import { BooksComponent } from './books/books.component';
 import { BooksService } from './books/books.service';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { BooksService } from './books/books.service';
     MenuListComponent,
     BooksComponent,
     BookNewComponent,
+    AuthorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +52,9 @@ import { BooksService } from './books/books.service';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [LibrosService, SecurityService, BooksService],
+  providers: [LibrosService, SecurityService, {provide: MAT_DATE_LOCALE, useValue: 'es-ES'}],
   bootstrap: [AppComponent],
   entryComponents: [BookNewComponent],
 })

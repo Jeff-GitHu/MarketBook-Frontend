@@ -11,7 +11,7 @@
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="title">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</mat-header-cell>
-    <mat-cell *matCellDef="let elemt">{{ elemt.title }}</mat-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.titulo }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="description">
@@ -23,7 +23,7 @@
 
   <ng-container matColumnDef="author">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Autor</mat-header-cell>
-    <mat-cell *matCellDef="let elemt">{{ elemt.author }}</mat-cell>
+    <mat-cell *matCellDef="let elemt">{{ elemt.author.completeName }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="price">
@@ -34,7 +34,13 @@
   <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
 </mat-table>
 
-<mat-paginator [pageSize]="1" [pageSizeOptions]="[1,5,10,20]" ></mat-paginator>
+<mat-paginator
+  (page)="eventPagination($event)"
+  #pagination
+  [pageSize]="booksByPage"
+  [pageSizeOptions]="pageCombo"
+  [length]="totalBooks"
+></mat-paginator>
 <button mat-fab id="button-add" color="warn" (click)="openDialog()">
   <mat-icon>add</mat-icon>
 </button>

@@ -8,6 +8,8 @@
       <li *ngIf="!stateUser"><a routerLink="/Register">Register</a></li>
       <li *ngIf="!stateUser"><a routerLink="/Login">Login</a></li>
       <li *ngIf="stateUser"><a routerLink="/">Home</a></li>
+      <li *ngIf="stateUser"><a routerLink="/Books">Books</a></li>
+      <li *ngIf="stateUser"><a routerLink="/Authors">Authors</a></li>
       <li (click)="logOut()" *ngIf="stateUser"><a routerLink="/">Salir</a></li>
     </ul>
   </div>

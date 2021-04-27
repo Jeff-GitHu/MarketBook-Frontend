@@ -5,6 +5,8 @@ import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { StartComponent } from './start.component';
 import { BooksComponent } from './books/books.component';
+import { AuthorsComponent } from './authors/authors.component';
+
 
 //Providers
 import { SecurityRouter } from './security/security.router';
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'Books', component: BooksComponent },
+  { path: 'Authors', component: AuthorsComponent },
+
 ];
 
 @NgModule({

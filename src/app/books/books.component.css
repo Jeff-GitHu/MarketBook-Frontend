@@ -4,3 +4,7 @@
   left: auto;
   position: absolute; /*para ubicarse sobre cualquier elemento*/
 }
+
+mat-form-field{
+  width: 100%;
+}
