@@ -7,18 +7,16 @@ import { StartComponent } from './start.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 
-
-//Providers
+// Providers
 import { SecurityRouter } from './security/security.router';
 
 const routes: Routes = [
   { path: '', component: StartComponent, canActivate: [SecurityRouter] },
-  { path: 'Libros', component: LibrosComponent },
+  // { path: 'Libros', component: LibrosComponent },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'Books', component: BooksComponent },
-  { path: 'Authors', component: AuthorsComponent },
-
+  { path: 'Books', component: BooksComponent, canActivate: [SecurityRouter] },
+  { path: 'Authors', component: AuthorsComponent, canActivate: [SecurityRouter] },
 ];
 
 @NgModule({

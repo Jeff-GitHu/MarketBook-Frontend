@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-//declarations
+// declarations
 import { AppComponent } from './app.component';
 import { UserComponent } from './user.component';
 import { LibroComponent } from './libro/libro.component';
@@ -11,7 +11,7 @@ import { LoginComponent } from './security/login/login.component';
 import { BarComponent } from './navigation/bar/bar.component';
 import { MenuListComponent } from './navigation/menu-list/menu-list.component';
 
-//imports
+// imports
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { AuthorsComponent } from './authors/authors.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
-//providers
+// providers
 import { LibrosService } from './services/libros.service';
 import { SecurityService } from './security/security.service';
 import { BooksComponent } from './books/books.component';

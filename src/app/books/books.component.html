@@ -3,13 +3,13 @@
     <input
       matInput
       type="text"
-      (keyup)="todoFilter($event.target.value)"
+      (keyup)="toDoFilter($event)"
       placeholder="Ingrese texto"
     />
   </mat-form-field>
 </div>
-<mat-table [dataSource]="dataSource" matSort>
-  <ng-container matColumnDef="title">
+<mat-table [dataSource]="dataSource" matSort (matSortChange)="orderColumns($event)">
+  <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</mat-header-cell>
     <mat-cell *matCellDef="let elemt">{{ elemt.titulo }}</mat-cell>
   </ng-container>

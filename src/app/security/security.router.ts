@@ -13,6 +13,7 @@ export class SecurityRouter implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    // console.log(state);
     if (this.securityServices.onSesion()) {
       return true;
     } else {

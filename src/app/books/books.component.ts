@@ -21,7 +21,8 @@ import { PaginationBooks } from './pagination-books.model';
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
-  displayColumns = ['title', 'description', 'author', 'price'];
+  timeout: any = null;
+  displayColumns = ['titulo', 'description', 'author', 'price'];
   dataSource = new MatTableDataSource<Books>();
   @ViewChild(MatSort) ordering: MatSort;
   @ViewChild(MatPaginator) pagination: MatPaginator;
@@ -32,15 +33,15 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
   booksByPage = 2;
   pageCombo = [1, 2, 5, 10];
   actualPage = 1;
-  sort = 'title';
+  sort = 'titulo';
   sortDirection = 'asc';
   filterValue = null;
 
   constructor(private booksService: BooksService, private dialog: MatDialog) {}
   /*
   *Este evento paginador me permite actualizar la data referente a la pagina actual y tambien los libros por pagina que actualice el usuario
- */
-  eventPagination(event: PageEvent) {
+  */
+  eventPagination(event: PageEvent): void {
     this.booksByPage = event.pageSize;
     this.actualPage = event.pageIndex + 1;
     this.booksService.getBooks(
@@ -48,6 +49,16 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
       this.actualPage,
       this.sort,
       this.sortDirection,
+      this.filterValue
+    );
+  }
+
+  orderColumns(event): void {
+    this.booksService.getBooks(
+      this.booksByPage,
+      this.actualPage,
+      event.active,
+      event.direction,
       this.filterValue
     );
   }
@@ -68,8 +79,28 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  todoFilter(filter: string) {
-    this.dataSource.filter = filter;
+  toDoFilter(event: any): void {
+    clearTimeout(this.timeout);
+    const $this = this;
+
+    this.timeout = setTimeout(() => {
+      if (event.keyCode != 13) {
+        const filterValueLocal = {
+          propiedad: 'titulo',
+          valor: event.target.value,
+        };
+
+        $this.filterValue = filterValueLocal;
+
+        $this.booksService.getBooks(
+          $this.booksByPage,
+          $this.actualPage,
+          $this.sort,
+          $this.sortDirection,
+          filterValueLocal
+        );
+      }
+    }, 1000);
   }
 
   openDialog() {
@@ -77,16 +108,15 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
       width: '550px',
     });
 
-    dialogRef.afterClosed()
-      .subscribe(()=>{
-        this.booksService.getBooks(
-          this.booksByPage,
-          this.actualPage,
-          this.sort,
-          this.sortDirection,
-          this.filterValue
-        );
-      });
+    dialogRef.afterClosed().subscribe(() => {
+      this.booksService.getBooks(
+        this.booksByPage,
+        this.actualPage,
+        this.sort,
+        this.sortDirection,
+        this.filterValue
+      );
+    });
   }
 
   ngAfterViewInit() {
